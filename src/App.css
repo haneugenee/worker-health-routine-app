@@ -19,7 +19,7 @@
 
 .screen {
   flex: 1;
-  padding: 20px 18px 140px;
+  padding: 20px 18px 120px;
 }
 
 .card {
@@ -306,8 +306,16 @@ select:focus {
   font-size: 13px;
   font-weight: 700;
   color: white;
-  min-width: 108px;
+  min-width: 120px;
   text-align: center;
+}
+
+.mission-diet {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+}
+
+.mission-exercise {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
 }
 
 .mission-식습관 {
@@ -350,33 +358,58 @@ select:focus {
 }
 
 .mission-action {
-  border: none;
+  border: 2px solid transparent;
   border-radius: 18px;
-  padding: 14px 16px;
+  padding: 12px 16px;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
 .mission-action.active {
   transform: translateY(-2px);
-  box-shadow: 0 10px 23px rgba(59, 130, 246, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+  border-width: 2px;
+}
+
+.mission-action.active::before {
+  content: '✓ ';
+  margin-right: 2px;
 }
 
 .mission-action.complete {
+  background: #e0e7ff;
+  color: #1e3a63;
+}
+
+.mission-action.complete.active {
   background: #3b82f6;
   color: white;
+  border-color: #1d4ed8;
 }
 
 .mission-action.half {
-  background: #93c5fd;
+  background: #dbeafe;
   color: #1e3a63;
+}
+
+.mission-action.half.active {
+  background: #60a5fa;
+  color: white;
+  border-color: #3b82f6;
 }
 
 .mission-action.log {
   background: #f3f4f6;
   color: #334155;
+}
+
+.mission-action.log.active {
+  background: #d1d5db;
+  color: #111827;
+  border-color: #9ca3af;
 }
 
 .mission-result-card {
@@ -403,12 +436,12 @@ select:focus {
   transform: translateX(-50%);
   width: min(calc(100vw - 24px), 480px);
   max-width: 480px;
-  padding: 10px 12px 16px;
+  padding: 12px 12px 16px;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   border-top: 1px solid rgba(112, 118, 139, 0.15);
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 6px;
   z-index: 20;
 }
@@ -417,12 +450,16 @@ select:focus {
   border: none;
   background: #f5f7ff;
   color: #4f566b;
-  border-radius: 16px;
-  padding: 12px 8px;
+  border-radius: 14px;
+  padding: 10px 8px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tab-button.active {
@@ -439,7 +476,7 @@ select:focus {
 
 @media (min-width: 640px) {
   .screen {
-    padding: 24px 24px 104px;
+    padding: 24px 24px 100px;
   }
 
   .card {
@@ -498,6 +535,86 @@ select:focus {
   font-weight: 700;
 }
 
+.survey-header h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.survey-notice {
+  margin: 0;
+  color: #5b6b84;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.survey-question {
+  padding: 18px;
+  margin-bottom: 12px;
+}
+
+.survey-section {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1e2e4f;
+  font-weight: 600;
+}
+
+.question-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e2e4f;
+  margin-bottom: 8px;
+}
+
+.question-text {
+  font-size: 15px;
+  color: #1e2e4f;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.question-description {
+  font-size: 13px;
+  color: #5b6b84;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(82, 99, 124, 0.18);
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-label:hover {
+  border-color: #60a5fa;
+  background: #f0f9ff;
+}
+
+.option-label input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+}
+
+.option-text {
+  font-size: 14px;
+  color: #1d2f50;
+  flex: 1;
+}
+
 .calendar-cell {
   min-height: 64px;
   border-radius: 16px;
@@ -541,6 +658,44 @@ select:focus {
   font-size: 10px;
   font-weight: 700;
   margin-top: 6px;
+}
+
+.calendar-score {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.calendar-cell.score-high {
+  background: #ecfdf5;
+  border-color: #10b981;
+}
+
+.calendar-cell.score-high .calendar-score {
+  color: #065f46;
+}
+
+.calendar-cell.score-mid {
+  background: #e0f2fe;
+  border-color: #0ea5e9;
+}
+
+.calendar-cell.score-mid .calendar-score {
+  color: #0c4a6e;
+}
+
+.calendar-cell.score-low {
+  background: #fef3c7;
+  border-color: #fbbf24;
+}
+
+.calendar-cell.score-low .calendar-score {
+  color: #713f12;
+}
+
+.calendar-cell.score-none {
+  background: #f8fafc;
 }
 
 .calendar-cell.status-completed {
@@ -628,6 +783,60 @@ select:focus {
   margin: 0;
   color: #0f172a;
   font-weight: 600;
+}
+
+.record-mission-detail {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border-left: 4px solid #3b82f6;
+}
+
+.record-mission-detail strong {
+  font-size: 13px;
+  color: #475569;
+}
+
+.record-mission-detail p {
+  margin: 0;
+  color: #0f172a;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.record-mission-empty {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.record-mission-status {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.record-total-score {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: #fef3c7;
+  border-radius: 12px;
+  border: 2px solid #f59e0b;
+  margin-top: 4px;
+}
+
+.record-total-score strong {
+  font-size: 13px;
+  color: #b45309;
+}
+
+.record-total-score p {
+  margin: 0;
+  color: #b45309;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .empty-record-message {
@@ -719,6 +928,56 @@ select:focus {
   min-width: 32px;
 }
 
+/* Survey result visuals */
+.survey-result-card {
+  background: linear-gradient(180deg,#f8fbf6 0%, #ffffff 100%);
+}
+.score-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+.score-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+}
+.score-card.diet { border-left: 4px solid #34d399 }
+.score-card.activity { border-left: 4px solid #60a5fa }
+.score-value {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 8px;
+}
+.score-status {
+  margin-top: 6px;
+  color: #475569;
+  font-size: 13px;
+}
+.progress { background: #eef2f7; height: 10px; border-radius: 999px; margin-top: 10px; overflow: hidden }
+.progress-bar { height: 100%; border-radius: 999px }
+.diet-bar { background: linear-gradient(90deg,#34d399 0%, #10b981 100%); }
+.activity-bar { background: linear-gradient(90deg,#60a5fa 0%, #3b82f6 100%); }
+.total-card { margin-top: 12px; background: #fff; border-radius: 12px; padding: 12px; text-align: center }
+.total-value { font-size: 22px; font-weight: 900; margin-top: 6px }
+.total-status { margin-top: 6px; color: #334155 }
+.improvement-list ol { padding-left: 18px; margin: 8px 0 0 }
+.result-actions { display: grid; gap: 8px; margin-top: 12px }
+.survey-actions { display: grid; gap: 8px; margin-top: 12px }
+
+/* ensure space above bottom nav */
+@media (max-width: 639px) {
+  .screen { 
+    padding-bottom: 120px !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .score-row { gap: 18px }
+  .result-actions { grid-auto-flow: column; grid-template-columns: repeat(3,1fr) }
+}
+
 .name {
   flex: 1;
   font-weight: 600;
@@ -755,3 +1014,441 @@ select:focus {
     margin-top: 8px;
   }
 }
+
+/* BMI Chart Styles */
+.bmi-chart-container {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.bmi-chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bmi-chart {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.bmi-segment {
+  position: absolute;
+  height: 100%;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.bmi-segment .segment-label {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  padding: 0 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.bmi-marker {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.bmi-marker .marker-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: inherit;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bmi-marker .marker-label {
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 2px solid;
+  border-color: inherit;
+  color: inherit;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+  padding: 0 6px;
+}
+
+.bmi-education-note {
+  background: #f0f9ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 16px;
+}
+
+.bmi-education-note p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #1e40af;
+  font-weight: 500;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+  .bmi-segment .segment-label {
+    font-size: 11px;
+  }
+
+  .bmi-marker .marker-label {
+    font-size: 11px;
+  }
+
+  .bmi-range-labels {
+    font-size: 11px;
+  }
+
+  .bmi-education-note {
+    padding: 10px 12px;
+  }
+
+  .bmi-education-note p {
+    font-size: 11px;
+  }
+}
+
+/* 식사 탭 카테고리 필터 */
+.meal-category-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 2px;
+  margin-left: -2px;
+  margin-right: -2px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.meal-category-buttons::-webkit-scrollbar {
+  height: 4px;
+}
+
+.meal-category-buttons::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.meal-category-buttons::-webkit-scrollbar-thumb {
+  background: rgba(200, 200, 200, 0.5);
+  border-radius: 2px;
+}
+
+.meal-category-btn {
+  padding: 10px 16px;
+  border: 2px solid #e0e0e0;
+  background: #ffffff;
+  color: #666;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.meal-category-btn:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.meal-category-btn.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+/* 모바일 반응형 - 카테고리 버튼 */
+@media (max-width: 480px) {
+  .meal-category-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
+/* 미션 탭 스타일 */
+.mission-intro-card {
+  background: linear-gradient(135deg, #f0f9ff 0%, #f5f8ff 100%);
+  border: 1px solid #bfdbfe;
+}
+
+.mission-intro-card h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: #1e40af;
+}
+
+.mission-intro-date {
+  margin: 0 0 8px;
+  color: #2563eb;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mission-intro-note {
+  margin: 0;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.mission-emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.mission-top {
+  display: flex;
+  gap: 0;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.mission-top div {
+  flex: 1;
+}
+
+.mission-top h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #1e2e4f;
+}
+
+.mission-top p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.mission-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.mission-badge.mission-diet {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.mission-badge.mission-exercise {
+  background: #dbeafe;
+  color: #0369a1;
+}
+
+.mission-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+.mission-meta span {
+  display: flex;
+  align-items: center;
+}
+
+.mission-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mission-action {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  background: #ffffff;
+  color: #666;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mission-action:hover {
+  border-color: #bbb;
+  background: #f5f5f5;
+}
+
+.mission-action.active {
+  border-color: transparent;
+  color: white;
+}
+
+.mission-action.complete.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.mission-action.half.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.mission-action.log.active {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.mission-status {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.mission-status-text {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.mission-points {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.mission-praise {
+  margin: 0;
+  font-size: 13px;
+  color: #10b981;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.mission-summary-card {
+  background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
+  border: 1px solid #fcd34d;
+  margin-top: 20px;
+}
+
+.mission-summary-card h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: #b45309;
+}
+
+.mission-summary-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.summary-item {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  flex: 0 0 calc(50% - 6px);
+  min-width: 80px;
+}
+
+.summary-item.total {
+  flex: 0 0 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #f59e0b;
+}
+
+.summary-label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.summary-score {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #d97706;
+}
+
+.summary-score.total-score {
+  font-size: 22px;
+  color: #b45309;
+}
+
+/* 모바일 반응형 - 미션 */
+@media (max-width: 480px) {
+  .mission-buttons {
+    flex-direction: column;
+  }
+
+  .mission-action {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .mission-emoji {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  .mission-summary-grid {
+    gap: 8px;
+  }
+
+  .summary-item {
+    flex: 0 0 calc(50% - 4px);
+  }
+
+  .summary-item.total {
+    flex: 0 0 100%;
+  }
+  }
+}
+
