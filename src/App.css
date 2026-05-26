@@ -17,9 +17,43 @@
   margin: 0 auto;
 }
 
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(112, 118, 139, 0.1);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-branding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.brand-en {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.brand-ko {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
 .screen {
   flex: 1;
-  padding: 20px 18px 120px;
+  padding: 80px 18px 120px;
 }
 
 .card {
@@ -35,6 +69,29 @@
   margin: 0 0 10px;
   font-size: 24px;
   line-height: 1.2;
+}
+
+.intro-card h2 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.app-subtitle {
+  margin: 0 0 12px !important;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.secondary-intro {
+  margin: 8px 0 0 !important;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
 }
 
 .intro-card p,
@@ -910,11 +967,24 @@ select:focus {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px;
+  padding: 12px 16px;
   background: #ffffff;
   border: 1px solid rgba(148, 163, 184, 0.15);
   border-radius: 16px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ranking-item.rank-1 {
+  background: rgba(59, 130, 246, 0.04);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.ranking-item.rank-2,
+.ranking-item.rank-3 {
+  border-color: rgba(59, 130, 246, 0.12);
 }
 
 .ranking-item.me {
@@ -925,7 +995,8 @@ select:focus {
 .rank {
   font-weight: 700;
   color: #0f172a;
-  min-width: 32px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Survey result visuals */
@@ -959,11 +1030,13 @@ select:focus {
 .progress-bar { height: 100%; border-radius: 999px }
 .diet-bar { background: linear-gradient(90deg,#34d399 0%, #10b981 100%); }
 .activity-bar { background: linear-gradient(90deg,#60a5fa 0%, #3b82f6 100%); }
-.total-card { margin-top: 12px; background: #fff; border-radius: 12px; padding: 12px; text-align: center }
+.total-card { margin-top: 12px; margin-bottom: 16px; background: #fff; border-radius: 12px; padding: 12px; text-align: center }
 .total-value { font-size: 22px; font-weight: 900; margin-top: 6px }
 .total-status { margin-top: 6px; color: #334155 }
+.improvement-list { margin-top: 16px }
 .improvement-list ol { padding-left: 18px; margin: 8px 0 0 }
-.result-actions { display: grid; gap: 8px; margin-top: 12px }
+.result-actions { display: grid; gap: 8px; margin-top: 12px; place-items: center }
+.result-actions .big-button { width: fit-content; max-width: 280px; padding: 12px 28px }
 .survey-actions { display: grid; gap: 8px; margin-top: 12px }
 
 /* ensure space above bottom nav */
@@ -975,24 +1048,90 @@ select:focus {
 
 @media (min-width: 640px) {
   .score-row { gap: 18px }
-  .result-actions { grid-auto-flow: column; grid-template-columns: repeat(3,1fr) }
 }
 
 .name {
   flex: 1;
   font-weight: 600;
   color: #0f172a;
+  white-space: nowrap;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .score {
   font-weight: 600;
   color: #0369a1;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .user-badges {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   flex-wrap: wrap;
+}
+
+.my-encouragement {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  text-align: center;
+  font-size: 14px;
+  color: #475569;
+  font-style: italic;
+}
+
+/* Result summary grid */
+.result-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.score-summary-card {
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+.score-summary-card strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.score-summary-card.diet {
+  border-left: 3px solid #34d399;
+}
+
+.score-summary-card.activity {
+  border-left: 3px solid #60a5fa;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.summary-status {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.3;
+}
+
+@media (max-width: 639px) {
+  .result-summary-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1005,13 +1144,7 @@ select:focus {
   }
 
   .ranking-item {
-    flex-direction: column;
-    align-items: flex-start;
     gap: 8px;
-  }
-
-  .user-badges {
-    margin-top: 8px;
   }
 }
 
@@ -1054,10 +1187,12 @@ select:focus {
 .bmi-segment .segment-label {
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   white-space: nowrap;
-  padding: 0 6px;
+  padding: 0 3px;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  font-size: 10px;
+  line-height: 1.2;
 }
 
 .bmi-marker {
@@ -1068,28 +1203,28 @@ select:focus {
   gap: 8px;
   transform: translateX(-50%);
   z-index: 10;
+  background: transparent !important;
 }
 
 .bmi-marker .marker-dot {
-  width: 18px;
-  height: 18px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: inherit;
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .bmi-marker .marker-label {
-  background: #fff;
-  padding: 4px 8px;
-  border-radius: 8px;
-  font-size: 12px;
+  background: transparent;
+  padding: 2px 0;
+  border-radius: 0;
+  font-size: 11px;
   font-weight: 700;
   white-space: nowrap;
-  border: 2px solid;
-  border-color: inherit;
+  border: none;
   color: inherit;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+  margin-top: 4px;
 }
 
 .bmi-range-labels {

@@ -13,101 +13,92 @@ const tabs = [
 const missionStorageKey = 'dailyMissionRecords'
 
 const surveyQuestions = [
+  // 식습관 문항 (9개)
   {
     id: 'breakfast',
-    question: '아침식사를 얼마나 자주 하나요?',
-    options: ['거의 매일', '주 3–5회', '주 1–2회', '거의 안 먹음'],
+    question: '아침식사는 얼마나 자주 하나요?',
+    options: ['거의 안 함', '주 1~2회', '주 3~5회', '거의 매일'],
   },
   {
     id: 'lateMeal',
-    question: '야식 또는 늦은 저녁식사를 얼마나 자주 하나요?',
-    options: ['거의 없음', '주 1–2회', '주 3–4회', '주 5회 이상'],
+    question: '야식 또는 늦은 저녁식사는 얼마나 자주 하나요?',
+    options: ['거의 없음', '주 1~2회', '주 3~5회', '거의 매일'],
   },
   {
     id: 'vegetableFruit',
-    question: '채소 또는 과일을 하루에 얼마나 자주 섭취하나요?',
-    description: '예: 나물, 샐러드, 쌈채소, 과일 등',
-    options: ['거의 먹지 않음', '하루 1회 정도', '하루 2회 정도', '하루 3회 이상'],
+    question: '채소 또는 과일은 하루에 얼마나 자주 먹나요? (예시: 나물, 샐러드, 쌈채소, 과일 등)',
+    options: ['거의 먹지 않음', '하루 1회', '하루 2회', '하루 3회 이상'],
   },
   {
     id: 'protein',
-    question: '생선, 살코기, 달걀, 두부, 콩류 같은 단백질 식품을 매 끼니 챙겨 먹나요?',
-    options: ['거의 아니다', '하루 1끼 정도', '하루 2끼 정도', '거의 매 끼니'],
+    question: '생선, 육류, 달걀, 두부, 콩류 같은 단백질 식품을 얼마나 챙겨 먹나요?',
+    options: ['거의 먹지 않음', '하루 1회', '하루 2회', '거의 매 끼니'],
   },
   {
     id: 'processedFood',
-    question: '라면, 햄·소시지, 편의점 도시락, 패스트푸드 등 가공식품/인스턴트식품을 얼마나 자주 먹나요?',
-    options: ['거의 없음', '주 1–2회', '주 3–4회', '주 5회 이상'],
+    question: '패스트푸드 및 인스턴트식품은 얼마나 자주 먹나요? (예시: 라면, 햄·소시지, 편의점 도시락, 패스트푸드 등)',
+    options: ['거의 없음', '주 1~2회', '주 3~5회', '거의 매일'],
   },
   {
     id: 'sweetDrink',
-    question: '단 음료를 얼마나 자주 마시나요?',
-    description: '예: 탄산음료, 달달한 커피, 에너지드링크, 가당 주스',
-    options: ['거의 안 마심', '주 1–2회', '주 3–5회', '거의 매일'],
+    question: '단 음료는 얼마나 자주 마시나요? (예시: 탄산음료, 달달한 커피, 에너지드링크, 가당 주스 등)',
+    options: ['거의 없음', '주 1~2회', '주 3~5회', '거의 매일'],
   },
   {
     id: 'eatingOut',
-    question: '외식, 배달, 편의점 음식으로 식사를 해결하는 빈도는 어느 정도인가요?',
-    options: ['주 1회 이하', '주 2–3회', '주 4–5회', '거의 매일'],
+    question: '외식·배달·편의점 음식으로 식사를 해결하는 빈도는 어느 정도인가요?',
+    options: ['거의 없음', '주 1~2회', '주 3~5회', '거의 매일'],
   },
   {
-    id: 'alcohol',
-    question: '음주 빈도와 음주량은 어느 정도인가요?',
-    options: ['마시지 않음', '월 1–2회, 1–2잔 정도', '주 1회, 소주 반 병 정도', '주 2회 이상 또는 한 번에 소주 1병 이상'],
+    id: 'alcoholFrequency',
+    question: '술은 얼마나 자주 마시나요?',
+    options: ['마시지 않음', '월 1~2회', '주 1~2회', '주 3회 이상'],
   },
   {
-    id: 'aerobicExercise',
-    question: '최근 1주일 동안 숨이 약간 차는 유산소 운동을 총 몇 분 정도 했나요?',
-    description: '예: 빠르게 걷기, 자전거, 조깅, 등산',
-    options: ['없음', '30분 미만', '30–149분', '150분 이상'],
-    section: '운동 및 신체활동 문항',
+    id: 'alcoholAmount',
+    question: '술을 마실 때 한 번에 보통 얼마나 마시나요?',
+    options: ['마시지 않음', '1~2잔', '소주 반 병 정도', '소주 1병 이상'],
   },
-  {
-    id: 'strengthExercise',
-    question: '근력운동은 주 몇 회 하나요?',
-    description: '예: 웨이트, 팔굽혀펴기, 스쿼트, 기구운동',
-    options: ['안 함', '주 1회', '주 2회', '주 3회 이상'],
-  },
-  {
-    id: 'sittingTime',
-    question: '하루 평균 앉아 있는 시간은 어느 정도인가요?',
-    options: ['4시간 미만', '4–6시간', '7–9시간', '10시간 이상'],
-  },
+  // 신체활동 문항 (6개)
   {
     id: 'dailyActivity',
-    question: '일상생활에서 신체활동을 얼마나 하는 편인가요?',
-    description: '예: 계단 이용, 출퇴근 걷기, 점심시간 산책, 업무 중 이동',
-    options: ['거의 하지 않음', '가끔 함', '자주 함', '매우 자주 함'],
+    question: '일상생활에서 신체활동을 얼마나 하는 편인가요? (예시: 계단 이용, 출퇴근 걷기, 점심시간 산책, 업무 중 이동 등)',
+    options: ['거의 안 함', '가끔 함', '자주 함', '매우 자주 함'],
   },
   {
     id: 'steps',
     question: '평소 하루 평균 걸음 수는 어느 정도인가요?',
-    options: ['3,000보 미만', '3,000–5,999보', '6,000–7,999보', '8,000보 이상', '잘 모름'],
+    options: ['3,000보 미만', '3,000~4,999보', '5,000~7,999보', '8,000보 이상'],
+  },
+  {
+    id: 'aerobicExercise',
+    question: '숨이 약간 차는 유산소 운동은 주당 얼마나 하나요? (예시: 빠르게 걷기, 자전거, 조깅, 등산 등)',
+    options: ['거의 안 함', '주 30분 미만', '주 30분~2시간 30분 미만', '주 2시간 30분 이상'],
+  },
+  {
+    id: 'strengthExercise',
+    question: '근력운동은 주 몇 회 하나요? (예시: 웨이트, 팔굽혀펴기, 스쿼트, 기구운동 등)',
+    options: ['거의 안 함', '주 1회', '주 2회', '주 3회 이상'],
   },
   {
     id: 'exerciseDuration',
-    question: '평소 운동을 한 번 할 때 평균 지속시간은 어느 정도인가요?',
-    options: ['10분 미만', '10–29분', '30–59분', '60분 이상'],
+    question: '운동을 한 번 할 때 평균 지속시간은 어느 정도인가요?',
+    options: ['10분 미만', '10~29분', '30~59분', '60분 이상'],
   },
   {
     id: 'exerciseIntensity',
     question: '운동 강도는 보통 어느 정도인가요?',
-    options: ['거의 움직이지 않음', '가벼운 활동 중심: 천천히 걷기, 스트레칭', '중간 강도 활동 중심: 빠르게 걷기, 자전거, 가벼운 조깅', '고강도 활동 중심: 달리기, 인터벌 운동, 구기종목'],
-  },
-  {
-    id: 'regularExercise',
-    question: '최근 1개월 동안 규칙적으로 운동을 실천한 편인가요?',
-    options: ['거의 하지 않음', '가끔 생각날 때만 함', '주 1–2회 정도 실천함', '주 3회 이상 꾸준히 실천함'],
+    options: ['거의 움직이지 않음', '가벼운 활동 중심', '중간 강도 활동 중심', '고강도 활동 중심'],
   },
 ]
 
 const exampleUsers = [
-  { name: '김철수', weeklyScore: 45, monthlyScore: 180, practiceDays: 18, streakDays: 5, badges: ['꾸준왕', '물마시기왕'] },
-  { name: '이영희', weeklyScore: 50, monthlyScore: 200, practiceDays: 20, streakDays: 7, badges: ['점심산책왕', '채소추가왕'] },
-  { name: '박민수', weeklyScore: 40, monthlyScore: 160, practiceDays: 16, streakDays: 3, badges: ['회식방어왕'] },
-  { name: '정수진', weeklyScore: 55, monthlyScore: 220, practiceDays: 22, streakDays: 10, badges: ['꾸준왕', '다시시작왕', '채소추가왕'] },
-  { name: '홍길동', weeklyScore: 35, monthlyScore: 140, practiceDays: 14, streakDays: 2, badges: [] },
-  { name: '최영자', weeklyScore: 60, monthlyScore: 240, practiceDays: 24, streakDays: 12, badges: ['꾸준왕', '점심산책왕', '물마시기왕', '채소추가왕'] },
+  { name: '민수', weeklyScore: 75, monthlyScore: 300, practiceDays: 24, streakDays: 12, badges: ['꾸준왕', '채소추가'] },
+  { name: '준호', weeklyScore: 62, monthlyScore: 248, practiceDays: 20, streakDays: 8, badges: ['점심산책'] },
+  { name: '태현', weeklyScore: 48, monthlyScore: 192, practiceDays: 16, streakDays: 5, badges: ['운동실천'] },
+  { name: '성훈', weeklyScore: 35, monthlyScore: 140, practiceDays: 14, streakDays: 3, badges: [] },
+  { name: '호준', weeklyScore: 28, monthlyScore: 112, practiceDays: 11, streakDays: 2, badges: ['식단실천'] },
+  { name: '재영', weeklyScore: 42, monthlyScore: 168, practiceDays: 18, streakDays: 7, badges: ['다시시작', '물마시기'] },
 ]
 
 const defaultForm = {
@@ -672,100 +663,93 @@ function App() {
   const optionScores = {
     breakfast: {
       '거의 매일': 5,
-      '주 3–5회': 3,
-      '주 1–2회': 1,
-      '거의 안 먹음': 0,
+      '주 3~5회': 3,
+      '주 1~2회': 1,
+      '거의 안 함': 0,
     },
     lateMeal: {
       '거의 없음': 5,
-      '주 1–2회': 3,
-      '주 3–4회': 1,
-      '주 5회 이상': 0,
+      '주 1~2회': 3,
+      '주 3~5회': 1,
+      '거의 매일': 0,
     },
     vegetableFruit: {
       '하루 3회 이상': 5,
-      '하루 2회 정도': 3,
-      '하루 1회 정도': 1,
+      '하루 2회': 3,
+      '하루 1회': 1,
       '거의 먹지 않음': 0,
     },
     protein: {
       '거의 매 끼니': 5,
-      '하루 2끼 정도': 3,
-      '하루 1끼 정도': 1,
-      '거의 아니다': 0,
+      '하루 2회': 3,
+      '하루 1회': 1,
+      '거의 먹지 않음': 0,
     },
     processedFood: {
       '거의 없음': 5,
-      '주 1–2회': 3,
-      '주 3–4회': 1,
-      '주 5회 이상': 0,
+      '주 1~2회': 3,
+      '주 3~5회': 1,
+      '거의 매일': 0,
     },
     sweetDrink: {
-      '거의 안 마심': 5,
-      '주 1–2회': 3,
-      '주 3–5회': 1,
+      '거의 없음': 5,
+      '주 1~2회': 3,
+      '주 3~5회': 1,
       '거의 매일': 0,
     },
     eatingOut: {
-      '주 1회 이하': 5,
-      '주 2–3회': 3,
-      '주 4–5회': 1,
+      '거의 없음': 5,
+      '주 1~2회': 3,
+      '주 3~5회': 1,
       '거의 매일': 0,
     },
-    alcohol: {
+    alcoholFrequency: {
       '마시지 않음': 5,
-      '월 1–2회, 1–2잔 정도': 3,
-      '주 1회, 소주 반 병 정도': 1,
-      '주 2회 이상 또는 한 번에 소주 1병 이상': 0,
+      '월 1~2회': 3,
+      '주 1~2회': 1,
+      '주 3회 이상': 0,
     },
-    aerobicExercise: {
-      '150분 이상': 5,
-      '30–149분': 3,
-      '30분 미만': 1,
-      '없음': 0,
-    },
-    strengthExercise: {
-      '주 3회 이상': 5,
-      '주 2회': 3,
-      '주 1회': 1,
-      '안 함': 0,
-    },
-    sittingTime: {
-      '4시간 미만': 5,
-      '4–6시간': 3,
-      '7–9시간': 1,
-      '10시간 이상': 0,
+    alcoholAmount: {
+      '마시지 않음': 5,
+      '1~2잔': 3,
+      '소주 반 병 정도': 1,
+      '소주 1병 이상': 0,
     },
     dailyActivity: {
       '매우 자주 함': 5,
       '자주 함': 3,
       '가끔 함': 1,
-      '거의 하지 않음': 0,
+      '거의 안 함': 0,
     },
     steps: {
       '8,000보 이상': 5,
-      '6,000–7,999보': 3,
-      '3,000–5,999보': 1,
+      '5,000~7,999보': 3,
+      '3,000~4,999보': 1,
       '3,000보 미만': 0,
-      '잘 모름': 1,
+    },
+    aerobicExercise: {
+      '주 2시간 30분 이상': 5,
+      '주 30분~2시간 30분 미만': 3,
+      '주 30분 미만': 1,
+      '거의 안 함': 0,
+    },
+    strengthExercise: {
+      '주 3회 이상': 5,
+      '주 2회': 3,
+      '주 1회': 1,
+      '거의 안 함': 0,
     },
     exerciseDuration: {
       '60분 이상': 5,
-      '30–59분': 3,
-      '10–29분': 1,
+      '30~59분': 3,
+      '10~29분': 1,
       '10분 미만': 0,
     },
     exerciseIntensity: {
+      '고강도 활동 중심': 5,
+      '중간 강도 활동 중심': 3,
+      '가벼운 활동 중심': 1,
       '거의 움직이지 않음': 0,
-      '가벼운 활동 중심: 천천히 걷기, 스트레칭': 1,
-      '중간 강도 활동 중심: 빠르게 걷기, 자전거, 가벼운 조깅': 3,
-      '고강도 활동 중심: 달리기, 인터벌 운동, 구기종목': 5,
-    },
-    regularExercise: {
-      '주 3회 이상 꾸준히 실천함': 5,
-      '주 1–2회 정도 실천함': 3,
-      '가끔 생각날 때만 함': 1,
-      '거의 하지 않음': 0,
     },
   }
 
@@ -777,35 +761,34 @@ function App() {
     processedFood: '가공식품 섭취 빈도 높음',
     sweetDrink: '단 음료 섭취 주의',
     eatingOut: '외식·배달 의존도 높음',
-    alcohol: '음주 관리 필요',
-    aerobicExercise: '유산소 활동 부족',
-    strengthExercise: '근력운동 부족',
-    sittingTime: '좌식시간 김',
+    alcoholFrequency: '음주 빈도 높음',
+    alcoholAmount: '음주량 높음',
     dailyActivity: '일상 신체활동 부족',
     steps: '걸음 수 부족',
+    aerobicExercise: '유산소 활동 부족',
+    strengthExercise: '근력운동 부족',
     exerciseDuration: '운동 지속시간 부족',
     exerciseIntensity: '운동 강도 낮음',
-    regularExercise: '규칙적 운동 부족',
   }
 
   const getDietStatus = (score) => {
-    if (score >= 32) return '양호한 식습관'
-    if (score >= 24) return '보통, 일부 개선 필요'
-    if (score >= 16) return '관리가 필요한 식습관'
+    if (score >= 36) return '양호한 식습관'
+    if (score >= 27) return '보통, 일부 개선 필요'
+    if (score >= 18) return '관리가 필요한 식습관'
     return '집중 개선이 필요한 식습관'
   }
 
   const getActivityStatus = (score) => {
-    if (score >= 32) return '활동적인 생활습관'
-    if (score >= 24) return '보통, 활동량 보완 필요'
-    if (score >= 16) return '신체활동 관리 필요'
+    if (score >= 24) return '활동적인 생활습관'
+    if (score >= 18) return '보통, 활동량 보완 필요'
+    if (score >= 12) return '신체활동 관리 필요'
     return '운동습관 집중 개선 필요'
   }
 
   const getTotalStatus = (score) => {
-    if (score >= 64) return '건강 루틴이 잘 형성된 상태'
-    if (score >= 48) return '기본 습관은 있으나 보완 필요'
-    if (score >= 32) return '생활습관 개선이 필요한 상태'
+    if (score >= 60) return '건강 루틴이 잘 형성된 상태'
+    if (score >= 45) return '기본 습관은 있으나 보완 필요'
+    if (score >= 30) return '생활습관 개선이 필요한 상태'
     return '작은 실천부터 시작이 필요한 상태'
   }
 
@@ -815,8 +798,8 @@ function App() {
     let activityScore = 0
     const lowItems = []
 
-    const dietKeys = ['breakfast','lateMeal','vegetableFruit','protein','processedFood','sweetDrink','eatingOut','alcohol']
-    const activityKeys = ['aerobicExercise','strengthExercise','sittingTime','dailyActivity','steps','exerciseDuration','exerciseIntensity','regularExercise']
+    const dietKeys = ['breakfast','lateMeal','vegetableFruit','protein','processedFood','sweetDrink','eatingOut','alcoholFrequency','alcoholAmount']
+    const activityKeys = ['dailyActivity','steps','aerobicExercise','strengthExercise','exerciseDuration','exerciseIntensity']
 
     dietKeys.forEach((k) => {
       const val = responses[k]
@@ -833,8 +816,8 @@ function App() {
     })
 
     // ensure bounds
-    dietScore = Math.max(0, Math.min(40, dietScore))
-    activityScore = Math.max(0, Math.min(40, activityScore))
+    dietScore = Math.max(0, Math.min(45, dietScore))
+    activityScore = Math.max(0, Math.min(30, activityScore))
     const totalScore = dietScore + activityScore
 
     const improvementPoints = lowItems.slice(0, 3).map((id) => idToLabel[id] || id)
@@ -1130,7 +1113,7 @@ function App() {
     isMe: true,
   }
 
-  const allUsers = [...exampleUsers, myStats].sort((a, b) => b.monthlyScore - a.monthlyScore)
+  const allUsers = [...exampleUsers, myStats].sort((a, b) => b.weeklyScore - a.weeklyScore)
   const myRank = allUsers.findIndex(user => user.isMe) + 1
 
   const renderHealthCheck = () => {
@@ -1138,13 +1121,15 @@ function App() {
       return (
         <>
           <section className="card intro-card">
-            <h2>30–40대 직장인 건강체크</h2>
-            <p>30–40대 직장인 남성을 위한 건강 루틴 체크입니다. 기본 정보와 생활습관 설문을 입력하면 BMI와 식습관·운동습관 점수를 확인할 수 있습니다.</p>
+            <h2>바디 리부트</h2>
+            <p className="app-subtitle">BODY REBOOT</p>
+            <p>바쁜 3040 직장인 남성을 위한 생활 밀착형 비만 관리 솔루션입니다.</p>
+            <p className="secondary-intro">거창한 다이어트가 아니라, 식단과 운동의 작은 실천을 쌓아 몸과 습관을 다시 시작합니다.</p>
             <p className="disclaimer">이 앱은 의료 진단이 아니라 영양교육 실습용 자가진단입니다.</p>
           </section>
 
           <section className="card placeholder-card">
-            <h3>1단계: 기본 정보 입력</h3>
+            <h3>기본 정보 입력</h3>
             <form className="diagnosis-form" onSubmit={handleHealthCheckBasicInfoSubmit}>
               <div className="field-group">
                 <label>
@@ -1193,7 +1178,7 @@ function App() {
               </div>
 
               <button className="big-button" type="submit">
-                다음: 설문 입력
+                설문 입력
               </button>
             </form>
 
@@ -1209,7 +1194,7 @@ function App() {
       return (
         <>
           <section className="card survey-header">
-            <h2>2단계: 생활습관 설문</h2>
+            <h2>생활습관 설문</h2>
             <p className="survey-notice">
               응답 기준: 최근 1개월 동안의 평소 생활습관을 기준으로 답해주세요.<br />
               이 설문은 영양교육 및 상담 실습을 위한 교육용 사전 설문이며, 의료 진단이 아닙니다.
@@ -1217,21 +1202,9 @@ function App() {
           </section>
 
           {surveyQuestions.map((question, index) => {
-            let currentSection = null
-            const showSection = question.section && question.section !== currentSection
-            if (showSection) {
-              currentSection = question.section
-            }
             return (
               <section key={question.id} className="card survey-question">
-                {showSection && (
-                  <h3 className="survey-section">{question.section}</h3>
-                )}
-                <div className="question-number">{index + 1}.</div>
                 <div className="question-text">{question.question}</div>
-                {question.description && (
-                  <div className="question-description">{question.description}</div>
-                )}
                 <div className="question-options">
                   {question.options.map((option) => (
                     <label key={option} className="option-label">
@@ -1252,10 +1225,10 @@ function App() {
 
           <section className="card survey-actions">
             <button className="big-button" type="button" onClick={handleHealthCheckSurveySubmit}>
-              3단계: 결과 보기
+              결과 보기
             </button>
             <button className="big-button" type="button" onClick={() => setHealthCheckStage('basicInfo')} style={{ marginTop: '8px', background: '#ccc' }}>
-              이전: 기본 정보 수정
+              기본 정보 수정
             </button>
           </section>
         </>
@@ -1266,49 +1239,42 @@ function App() {
       return (
         <>
           <section className="card intro-card">
-            <h2>3단계: 결과 확인</h2>
+            <h2>결과 확인</h2>
             <p>당신의 건강 상태를 한눈에 확인하세요.</p>
           </section>
 
           <section className="card result-card">
             <h3>{profileData?.nickname}님의 건강 체크 결과</h3>
-            
-            <div className="result-grid">
-              <div className="score-card">
+
+            <BMIChart bmi={result?.bmi} />
+
+            <div className="result-summary-grid">
+              <div className="score-summary-card">
                 <strong>BMI</strong>
-                <div className="score-value" style={{ fontSize: '24px', color: '#2563eb' }}>{result?.bmi}</div>
-                <div className="score-status">{result?.bmiCategory}</div>
-                <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>기준상 해당</p>
+                <div className="summary-value" style={{ fontSize: '20px', color: '#2563eb' }}>{result?.bmi}</div>
+                <div className="summary-status">{result?.bmiCategory}</div>
               </div>
               {preSurveyScores && (
                 <>
-                  <div className="score-card diet">
+                  <div className="score-summary-card diet">
                     <strong>식습관 점수</strong>
-                    <div className="score-value">{preSurveyScores.dietScore} / 40</div>
-                    <div className="score-status">{preSurveyScores.dietStatus}</div>
-                    <div className="progress">
-                      <div className="progress-bar diet-bar" style={{ width: `${(preSurveyScores.dietScore / 40) * 100}%` }} />
-                    </div>
+                    <div className="summary-value">{preSurveyScores.dietScore} / 45</div>
+                    <div className="summary-status">{preSurveyScores.dietStatus}</div>
                   </div>
-                  <div className="score-card activity">
+                  <div className="score-summary-card activity">
                     <strong>운동습관 점수</strong>
-                    <div className="score-value">{preSurveyScores.activityScore} / 40</div>
-                    <div className="score-status">{preSurveyScores.activityStatus}</div>
-                    <div className="progress">
-                      <div className="progress-bar activity-bar" style={{ width: `${(preSurveyScores.activityScore / 40) * 100}%` }} />
-                    </div>
+                    <div className="summary-value">{preSurveyScores.activityScore} / 30</div>
+                    <div className="summary-status">{preSurveyScores.activityStatus}</div>
                   </div>
                 </>
               )}
             </div>
 
-            <BMIChart bmi={result?.bmi} />
-
             {preSurveyScores && (
               <>
                 <div className="total-card">
                   <strong>종합 점수</strong>
-                  <div className="total-value">{preSurveyScores.totalScore} / 80</div>
+                  <div className="total-value">{preSurveyScores.totalScore} / 75</div>
                   <div className="total-status">{preSurveyScores.totalStatus}</div>
                 </div>
 
@@ -1322,18 +1288,11 @@ function App() {
                     )}
                   </ol>
                 </div>
-
-                <div className="recommendation">
-                  <strong>오늘의 추천 실천</strong>
-                  <p>{preSurveyScores.recommendation}</p>
-                </div>
               </>
             )}
 
             <div className="result-actions">
               <button className="big-button" type="button" onClick={handleEditResponse}>응답 수정하기</button>
-              <button className="big-button" type="button" onClick={() => setActiveTab('meal')} style={{ background: '#10b981', marginTop: '8px' }}>식사 추천 보기</button>
-              <button className="big-button" type="button" onClick={() => setActiveTab('mission')} style={{ background: '#f59e0b', marginTop: '8px' }}>미션 시작하기</button>
             </div>
           </section>
         </>
@@ -1727,8 +1686,8 @@ function App() {
   const renderRanking = () => (
     <>
       <section className="card ranking-header">
-        <h2>실천 점수 랭킹</h2>
-        <p className="ranking-note">체중이 아니라 실천을 비교합니다. 작은 습관이 큰 변화를 만듭니다.</p>
+        <h2>주간 랭킹</h2>
+        <p className="ranking-note">이번 주 미션 실천 점수를 기준으로 비교합니다. 체중이 아니라 실천을 비교합니다.</p>
       </section>
 
       <section className="card my-stats">
@@ -1761,35 +1720,20 @@ function App() {
             </div>
           </div>
         )}
+        <p className="my-encouragement">순위보다 중요한 것은 오늘의 작은 실천입니다.</p>
       </section>
 
       <section className="card ranking-list">
-        <h3>월간 랭킹</h3>
+        <h3>주간 랭킹</h3>
         <ol className="ranking-ol">
           {allUsers.map((user, index) => (
-            <li key={user.name} className={`ranking-item ${user.isMe ? 'me' : ''}`}>
+            <li key={user.name} className={`ranking-item rank-${index + 1} ${user.isMe ? 'me' : ''}`}>
               <span className="rank">{index + 1}위</span>
               <span className="name">{user.name}</span>
-              <span className="score">{user.monthlyScore}점</span>
-              <div className="user-badges">
-                {user.badges.map(badge => (
-                  <span key={badge} className="badge small">{badge}</span>
-                ))}
-              </div>
+              <span className="score">{user.weeklyScore}점</span>
             </li>
           ))}
         </ol>
-      </section>
-
-      <section className="card encouragement-card">
-        {myRank <= 3 ? (
-          <p>축하합니다! 상위권이에요. 꾸준함이 빛을 발하고 있어요.</p>
-        ) : myRank <= 5 ? (
-          <p>좋아요! 중간 그룹이에요. 조금만 더 노력하면 상위로 올라갈 수 있어요.</p>
-        ) : (
-          <p>괜찮아요. 시작이 반이에요. 매일 조금씩 실천하다 보면 순위가 올라갈 거예요.</p>
-        )}
-        <p>건강은 경쟁이 아니라 자기 관리입니다. 오늘도 한 걸음 더 나아가 보세요!</p>
       </section>
     </>
   )
@@ -1813,6 +1757,12 @@ function App() {
 
   return (
     <div className="app-shell">
+      <header className="app-header">
+        <div className="app-branding">
+          <span className="brand-en">BODY REBOOT</span>
+          <span className="brand-ko">바디 리부트</span>
+        </div>
+      </header>
       <main className="screen">{renderContent()}</main>
 
       <nav className="bottom-nav" aria-label="하단 메뉴">
